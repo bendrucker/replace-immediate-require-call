@@ -5,6 +5,7 @@ var replace = require('./')
 
 var simple = "require('foo')()"
 var args = "require('foo')('bar', process)"
+var multiple = "require('foo')()\nrequire('bar')()"
 
 test(function (t) {
   var code
@@ -25,6 +26,12 @@ test(function (t) {
     }
   })
   t.equal(code, 'Literal, Identifier')
+
+  code = replace(multiple, {
+    foo: function () {return 'baz'},
+    bar: function () {return 'qux'}
+  })
+  t.equal(code, 'baz\nqux')
 
   t.end()
 })
