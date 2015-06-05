@@ -1,7 +1,7 @@
 {
   "name": "replace-immediate-require-call",
   "main": "index.js",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Replace immediate calls to a required function",
   "license": "MIT",
   "repository": "bendrucker/replace-immediate-require-call",
