@@ -25,7 +25,8 @@
   ],
   "dependencies": {
     "detective": "~4.1.0",
-    "has-require": "~1.1.0"
+    "has-require": "~1.1.0",
+    "patch-text": "~1.0.2"
   },
   "devDependencies": {
     "tape": "^4.0.0",

@@ -2,13 +2,13 @@
 
 var hasRequire = require('has-require')
 var detective = require('detective')
+var patch = require('patch-text')
 
 module.exports = function replaceImmediateRequireCall (code, replacements) {
   var ids = Object.keys(replacements)
   var checker = new hasRequire.Checker(code)
   if (!ids.some(checker.has, checker)) return code
-  var offset = 0
-  return detective
+  var patches = detective
     .find(code, {nodes: true})
     .nodes
     .filter(requireLiteral)
@@ -30,13 +30,7 @@ module.exports = function replaceImmediateRequireCall (code, replacements) {
         replacement: replacements[require.id].apply(null, parent.arguments)
       }
     })
-    .reduce(function (code, statement) {
-      var start = statement.start + offset
-      var end = statement.end + offset
-      var replacement = statement.replacement
-      offset += (replacement.length - (end - start))
-      return code.slice(0, start) + replacement + code.slice(end)
-    }, code)
+  return patch(code, patches)
 }
 
 function requireLiteral (node) {
