@@ -1,4 +1,4 @@
-# replace-immediate-require-call [![Build Status](https://travis-ci.org/bendrucker/replace-immediate-require-call.svg?branch=master)](https://travis-ci.org/bendrucker/replace-immediate-require-call)
+# replace-immediate-require-call [![Build Status](https://travis-ci.org/bendrucker/replace-immediate-require-call.svg?branch=master)](https://travis-ci.org/bendrucker/replace-immediate-require-call) [![Greenkeeper badge](https://badges.greenkeeper.io/bendrucker/replace-immediate-require-call.svg)](https://greenkeeper.io/)
 
 > Replace immediate calls to a required function
 
