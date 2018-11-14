@@ -9,7 +9,7 @@ module.exports = function replaceImmediateRequireCall (code, replacements) {
   var checker = new hasRequire.Checker(code)
   if (!ids.some(checker.has, checker)) return code
   var patches = detective
-    .find(code, {nodes: true})
+    .find(code, { nodes: true })
     .nodes
     .filter(requireLiteral)
     .filter(callExpression)

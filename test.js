@@ -28,8 +28,8 @@ test(function (t) {
   t.equal(code, 'Literal, Identifier')
 
   code = replace(multiple, {
-    foo: function () {return 'baz'},
-    bar: function () {return 'qux'}
+    foo: function () { return 'baz' },
+    bar: function () { return 'qux' }
   })
   t.equal(code, 'baz\nqux')
 
