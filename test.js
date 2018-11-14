@@ -3,20 +3,19 @@
 var test = require('tape')
 var replace = require('./')
 
-var simple = "require('foo')()"
-var args = "require('foo')('bar', process)"
-var multiple = "require('foo')()\nrequire('bar')()"
-
-test(function (t) {
-  var code
-  code = replace(simple, {
+test('no args', function (t) {
+  const code = replace("require('foo')()", {
     foo: function () {
       return 'bar'
     }
   })
-  t.equal(code, 'bar')
 
-  code = replace(args, {
+  t.equal(code, 'bar')
+  t.end()
+})
+
+test('multiple arg types', function (t) {
+  const code = replace("require('foo')('bar', process)", {
     foo: function () {
       return [].slice.call(arguments)
         .map(function (node) {
@@ -25,13 +24,17 @@ test(function (t) {
         .join(', ')
     }
   })
-  t.equal(code, 'Literal, Identifier')
 
-  code = replace(multiple, {
+  t.equal(code, 'Literal, Identifier')
+  t.end()
+})
+
+test('multiple replacements', function (t) {
+  const code = replace("require('foo')()\nrequire('bar')()", {
     foo: function () { return 'baz' },
     bar: function () { return 'qux' }
   })
-  t.equal(code, 'baz\nqux')
 
+  t.equal(code, 'baz\nqux')
   t.end()
 })
